@@ -1,18 +1,23 @@
----------------------------------------------
+------------------------------------------------------------------------------------------
 ---------- Validation of a updated_stations and updated_hire tables --
----------------------------------------------
+------------------------------------------------------------------------------------------
 
 -- validate updated_stations table
 ----------------------------------------------------
 select * from eu_london_bicycles.updated_stations
-where id in ('654', '744', '780')
+where id in ('250', '280', '334')
 order by id;
--- docks_count: 34 | 30 | 25
+-- bikes_count: 3 | 25 | 33
 
 select * from eu_london_bicycles.cycle_stations
-where id in (654, 744, 780)
+where id in (250, 280, 334)
 order by id;
--- docks_count: 34 | 30 | 25
+-- bikes_count: 0 | 0 | 2
+
+select * from eu_london_bicycles.cycle_stations_update
+where id in (250, 280, 334)
+order by id;
+-- bikes_count: 3 | 25 | 33
 
 -- validate updated_hire table
 ----------------------------------------------------
@@ -25,11 +30,16 @@ select * from eu_london_bicycles.cycle_hire
 where rental_id in (55699977, 43831498, 56155374)
 order by rental_id;
 -- end_station_id: 265 | 638 | 33
-
+-- if this would not have matched, I would have checked in the cycle_hire_update table.
 ---------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------------------
 ---------- Validation of a reporting_table --
 -- assuming that the intermediate table are accurate and properly validated against raw data --
----------------------------------------------
+------------------------------------------------------------------------------------------
 
 ---------------------------------------------
 -- (1) Take an example station_id and an example day
